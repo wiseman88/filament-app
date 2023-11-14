@@ -30,6 +30,7 @@ class CategoryResource extends Resource
                             Forms\Components\TextInput::make('name')
                                 ->required()
                                 ->unique()
+                                ->maxLength(20)
                                 ->live(onBlur: true)
                                 ->afterStateUpdated(function ($state, Forms\Set $set) {
                                     $set('slug', Str::slug($state));
