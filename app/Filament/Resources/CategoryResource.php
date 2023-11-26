@@ -29,7 +29,7 @@ class CategoryResource extends Resource
                         Forms\Components\Section::make([
                             Forms\Components\TextInput::make('name')
                                 ->required()
-                                ->unique()
+                                ->unique(ignoreRecord: true)
                                 ->maxLength(20)
                                 ->live(onBlur: true)
                                 ->afterStateUpdated(function ($state, Forms\Set $set) {
@@ -42,7 +42,8 @@ class CategoryResource extends Resource
                                 ->unique(Category::class, 'slug', ignoreRecord: true),
                             Forms\Components\Select::make('parent_id')
                                 ->label('Parent category')
-                                ->relationship('parent', 'name'),
+                                ->relationship('parent', 'name')
+                                ->native(false),
                             Forms\Components\MarkdownEditor::make('description')
                                 ->columnSpanFull(),
                             Forms\Components\Toggle::make('visible')
