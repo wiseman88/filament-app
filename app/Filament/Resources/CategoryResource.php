@@ -49,17 +49,17 @@ class CategoryResource extends Resource
                             Forms\Components\Toggle::make('visible')
                                 ->helperText('Enable or disable category visibility')
                                 ->default(false)
-                        ]),
-                    ]),
-                Forms\Components\Section::make('Image')
-                    ->schema([
-                        Forms\Components\FileUpload::make('image')
-                            ->directory('form-attachments')
-                            ->preserveFilenames()
-                            ->image()
-                            ->imageEditor(),
-                    ])->collapsible(),
-            ]);
+                        ])->columnSpan(1),
+                        Forms\Components\Section::make('Image')
+                            ->schema([
+                                Forms\Components\FileUpload::make('image')
+                                    ->directory('form-attachments')
+                                    ->preserveFilenames()
+                                    ->image()
+                                    ->imageEditor(),
+                            ])->collapsible()->columnSpan(1),
+                    ])->columns(2),
+            ])->columns(1);
     }
 
     public static function table(Table $table): Table
